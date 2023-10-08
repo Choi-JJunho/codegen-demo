@@ -54,6 +54,7 @@ openApiGenerate {
             "useTags" to "true"
         )
     )
+    // 템플릿 디렉터리 설정
     templateDir.set("$rootDir/contract/template")
 }
 
