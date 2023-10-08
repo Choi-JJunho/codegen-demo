@@ -79,7 +79,8 @@ tasks.register("moveGeneratedSources") {
             val generatedDir = file("$buildDir/generated/src/main/kotlin/$projectPackagePath/$packageName")
             val destinationDir = file("src/main/kotlin/$projectPackagePath/$packageName")
             generatedDir.listFiles { file -> file.extension == "kt" }?.forEach { file ->
-                if (!destinationDir.resolve(file.name).exists()) {
+                val resolvedFile = destinationDir.resolve(file.name)
+                if (!resolvedFile.exists() && file.name != "Application.kt") {
                     file.copyTo(destinationDir.resolve(file.name), false)
                 }
             }
