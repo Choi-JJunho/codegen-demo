@@ -8,13 +8,16 @@ CodeGen을 사용해보는 프로젝트입니다.
 gradle openApiGenerate
 ```
 
-> ![execute-openApiGenerate in intelliJ](docs/images/execute-openApiGenerate.png)
+
+> <img src="docs/images/execute-openApiGenerate.png" width="400px" alt="execute-openApiGenerate in intelliJ">
+> 
 > intelliJ 기준 설명
 > 
 > gradle task중 `openapi tools` - `openApiGenerate`를 실행한다.
 
-> ![openApiGenerate Result](docs/images/generateResult.png)
-`build/generated` 경로에 결과물이 생성된다.
+> <img src="docs/images/generateResult.png" width="400px" alt="openApiGenerate Result">
+> 
+> `build/generated` 경로에 결과물이 생성된다.
 
 # 실행방법 - 실행
 
@@ -26,7 +29,8 @@ $ gradle build
 $ java -jar build/libs/demo.jar
 ```
 
-> ![execute updateOpenApiSpec in intelliJ](docs/images/execute-updateOpenApiSpec.png)
+> <img src="docs/images/execute-updateOpenApiSpec.png" width="400px" alt="execute updateOpenApiSpec in intelliJ">
+> 
 > intelliJ 기준 설명
 >  
 > gradle task중 `openapi tools` - `openApiGenerate`를 실행한다.
@@ -35,7 +39,7 @@ $ java -jar build/libs/demo.jar
 
 http://localhost:8080/swagger-ui/index.html 접속
 
-![execute result swagger page](docs/images/result.png)
+<img src="docs/images/result.png" width="1200px" alt="execute result swagger page">
 
 # 참고
 
