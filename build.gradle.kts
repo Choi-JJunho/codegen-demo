@@ -55,7 +55,7 @@ openApiGenerate {
         )
     )
     // 템플릿 디렉터리 설정
-    templateDir.set("$rootDir/contract/template")
+    // templateDir.set("$rootDir/contract/template")
 }
 
 openApiValidate {
@@ -110,6 +110,7 @@ tasks.register("updateOpenApiSpec") {
         println("OpenAPI spec updated.")
     }
     dependsOn(
+        tasks.getByName("clean"),
         tasks.getByName("openApiGenerate"),
         tasks.getByName("moveGeneratedSources"),
         tasks.getByName("cleanGeneratedDirectory")
