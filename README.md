@@ -31,6 +31,12 @@ $ java -jar build/libs/demo.jar
 >  
 > gradle task중 `openapi tools` - `openApiGenerate`를 실행한다.
 
+# 실행 화면
+
+http://localhost:8080/swagger-ui/index.html 접속
+
+![execute result swagger page](docs/images/result.png)
+
 # 참고
 
 - [OpenAPI Generator Repository](https://github.com/OpenAPITools/openapi-generator)
