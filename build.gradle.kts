@@ -82,7 +82,7 @@ tasks.register("moveGeneratedSources") {
             originDir.listFiles { file -> file.extension == "kt" }?.forEach { file ->
                 val resolvedFile = destinationDir.resolve(file.name)
                 if (!resolvedFile.exists() && file.name != "Application.kt") {
-                    file.copyTo(destinationDir.resolve(file.name), false)
+                    file.copyTo(destinationDir.resolve(file.name), true)
                 }
             }
         }

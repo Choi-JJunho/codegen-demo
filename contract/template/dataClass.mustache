@@ -1,12 +1,12 @@
-
 /**
 * 우아한테크코스 캠퍼스플랫폼 API 생성 Template 에서 제작된 소스입니다.
 {{#vars}}
     * @param {{name}} {{{description}}}
 {{/vars}}
-*/{{#discriminator}}
+*/
+{{#discriminator}}
     {{>typeInfoAnnotation}}{{/discriminator}}
-private {{#discriminator}}interface {{classname}}{{/discriminator}}{{^discriminator}}{{#hasVars}}data {{/hasVars}}class {{classname}}(
+{{#discriminator}}interface {{classname}}{{/discriminator}}{{^discriminator}}{{#hasVars}}data {{/hasVars}}class {{classname}}(
 {{#requiredVars}}
     {{>dataClassReqVar}}{{^-last}},
     {{/-last}}{{/requiredVars}}{{#hasRequired}}{{#hasOptional}},
