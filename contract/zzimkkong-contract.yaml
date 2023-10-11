@@ -1,12 +1,12 @@
 openapi: 3.0.3
 info:
   title: 새로운찜꽁 api 작성
-  description: 찜꽁 api 작성 테스트
+  description: 찜꽁 api 작성 테스트 (made by. junho)
   contact:
-    email: woowa_course@woowahan.com
+    email: junho5336@gmail.com
   version: 1.0.0
 servers:
-  - url: https://dev.zzimkkong.com
+  - url: https://api.test.com
 tags:
   - name: Reservation
     description: 예약과 관련된 도메인입니다.
