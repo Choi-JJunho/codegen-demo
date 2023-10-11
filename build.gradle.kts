@@ -43,7 +43,7 @@ tasks.withType<Test> {
 openApiGenerate {
     generatorName.set("kotlin-spring")
     inputSpec.set("$rootDir/contract/zzimkkong-contract.yaml")
-    outputDir.set("$buildDir/generated")
+    outputDir.set("$buildDir/openapi")
     apiPackage.set("$projectPackageName.api")
     invokerPackage.set("$projectPackageName.invoker")
     modelPackage.set("$projectPackageName.model")
@@ -51,7 +51,8 @@ openApiGenerate {
         mapOf(
             "dateLibrary" to "kotlin-spring",
             "useSpringBoot3" to "true",
-            "useTags" to "true"
+            "useTags" to "true",
+            "interfaceOnly" to "true"
         )
     )
     // 템플릿 디렉터리 설정
@@ -76,9 +77,9 @@ tasks.register("moveGeneratedSources") {
     }
     doLast {
         listOf("api", "model", "invoker").forEach { packageName ->
-            val generatedDir = file("$buildDir/generated/src/main/kotlin/$projectPackagePath/$packageName")
-            val destinationDir = file("src/main/kotlin/$projectPackagePath/$packageName")
-            generatedDir.listFiles { file -> file.extension == "kt" }?.forEach { file ->
+            val originDir = file("$buildDir/openapi/src/main/kotlin/$projectPackagePath/$packageName")
+            val destinationDir = file("src/main/generated/$projectPackagePath/$packageName")
+            originDir.listFiles { file -> file.extension == "kt" }?.forEach { file ->
                 val resolvedFile = destinationDir.resolve(file.name)
                 if (!resolvedFile.exists() && file.name != "Application.kt") {
                     file.copyTo(destinationDir.resolve(file.name), false)
@@ -96,7 +97,7 @@ tasks.register("cleanGeneratedDirectory") {
     }
     doLast {
         // $buildDir/generated 디렉터리 삭제
-        val generatedDir = file("$buildDir/generated")
+        val generatedDir = file("$buildDir/openapi")
         generatedDir.deleteRecursively()
         println("Generated directory cleaned.")
     }
@@ -111,9 +112,26 @@ tasks.register("updateOpenApiSpec") {
         println("OpenAPI spec updated.")
     }
     dependsOn(
-        tasks.getByName("clean"),
         tasks.getByName("openApiGenerate"),
         tasks.getByName("moveGeneratedSources"),
         tasks.getByName("cleanGeneratedDirectory")
     )
+}
+
+sourceSets {
+    main {
+        kotlin {
+            srcDirs("src/main/generated")
+        }
+    }
+}
+
+tasks.named("clean") {
+    val generatedDir = file("src/main/generated")
+    generatedDir.deleteRecursively()
+    println("Generated directory cleaned.")
+}
+
+tasks.named("compileKotlin") {
+    dependsOn("updateOpenApiSpec")
 }
