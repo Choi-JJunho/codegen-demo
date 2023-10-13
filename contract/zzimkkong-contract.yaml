@@ -1,7 +1,7 @@
 openapi: 3.0.3
 info:
-  title: 새로운찜꽁 api 작성
-  description: 찜꽁 api 작성 테스트 (made by. junho)
+  title: 찜꽁 API 문서
+  description: 캠퍼스 플랫폼 찜꽁의 API 문서입니다.
   contact:
     email: junho5336@gmail.com
   version: 1.0.0

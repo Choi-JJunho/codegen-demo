@@ -11,6 +11,7 @@ plugins {
 group = "com.example"
 val projectPackageName = "com.example.demo"
 val projectPackagePath = "com/example/demo"
+val contractFileName = "campus-platform-contract.yaml"
 
 java {
     sourceCompatibility = JavaVersion.VERSION_17
@@ -42,7 +43,7 @@ tasks.withType<Test> {
 
 openApiGenerate {
     generatorName.set("kotlin-spring")
-    inputSpec.set("$rootDir/contract/zzimkkong-contract.yaml")
+    inputSpec.set("$rootDir/contract/$contractFileName")
     outputDir.set("$buildDir/openapi")
     apiPackage.set("$projectPackageName.api")
     invokerPackage.set("$projectPackageName.invoker")
@@ -56,11 +57,11 @@ openApiGenerate {
         )
     )
     // 템플릿 디렉터리 설정
-    // templateDir.set("$rootDir/contract/template")
+     templateDir.set("$rootDir/contract/template")
 }
 
 openApiValidate {
-    val contractPath = "$rootDir/contract/zzimkkong-contract.yaml"
+    val contractPath = "$rootDir/contract/$contractFileName"
     inputSpec.set(contractPath)
     recommend.set(true)
 }
