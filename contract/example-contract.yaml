@@ -1,0 +1,125 @@
+openapi: 3.0.3
+info:
+  title: 주노의 멋진 API 문서
+  description: OpenAPI 명세를 기반으로 한 멋진 문서입니다.
+  contact:
+    email: junho5336@gmail.com
+  version: 1.0.0
+servers:
+  - url: https://api.test.com
+tags:
+  - name: Juno
+    description: 주노꺼
+  - name: OtherGroup
+    description: 다른 사람꺼
+paths:
+  /api/post:
+    post:
+      operationId: createPost
+      tags:
+        - Juno
+      summary: 게시글 생성
+      description: 공지를 생성한다.
+      parameters:
+        - in: header
+          name: Authorization
+          schema:
+            type: string
+            example: 'Bearer {token}'
+          required: true
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/createPostRequest'
+      responses:
+        201:
+          description: Created
+          headers:
+            Location:
+              schema:
+                type: string
+                example: '/api/post/1'
+        401:
+          description: Unauthorized
+        400:
+          description: Bad Request
+    get:
+      operationId: findPost
+      tags:
+        - OtherGroup
+      summary: 게시글 전체 조회
+      description: 모든 게시글을 조회한다.
+      parameters:
+        - in: query
+          name: title
+          schema:
+            type: string
+            example: '오늘의 게시글'
+          required: false
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/findAllPostsResponse'
+        401:
+          description: Unauthorized
+        400:
+          description: Bad Request
+
+components:
+  schemas:
+    createPostRequest:
+      type: object
+      properties:
+        title:
+          type: string
+          example: '제목'
+          nullable: false
+          minLength: 1
+          maxLength: 50
+        content:
+          type: string
+          example: '내용'
+          nullable: false
+          minLength: 1
+          maxLength: 65535
+        author:
+          type: string
+          example: '작성자'
+          nullable: false
+          minLength: 1
+          maxLength: 20
+      required:
+        - title
+        - content
+        - author
+    findAllPostsResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/postResponse'
+    postResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+          nullable: false
+        title:
+          type: string
+          example: '제목'
+          nullable: false
+          minLength: 1
+          maxLength: 50
+        content:
+          type: string
+          example: '내용'
+          nullable: false
+          minLength: 1
+          maxLength: 65535
+      required:
+        - title
+        - content
