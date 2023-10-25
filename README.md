@@ -1,46 +1,42 @@
-# CodeGen Demo
+# codegen-kotlin-demo
 
-CodeGen을 사용해보는 프로젝트입니다.
+codegen-kotlin-demo 프로젝트에 오신것을 환영합니다!
 
-# 실행 방법 - 문서 생성
+## 소개
 
-```bash
-gradle openApiGenerate
-```
+본 레포지토리는 [OpenAPI CodeGenerator](https://github.com/OpenAPITools/openapi-generator) 프로젝트의 Gralde 플러그인을 활용하는 예제입니다.
 
+Gradle Task를 활용하여 OpenAPI Spec으로 명세를 기반으로 API Interface, DTO를 생성합니다.
 
-> <img src="docs/images/execute-openApiGenerate.png" width="400px" alt="execute-openApiGenerate in intelliJ">
-> 
-> intelliJ 기준 설명
-> 
-> gradle task중 `openapi tools` - `openApiGenerate`를 실행한다.
+> 본 프로젝트는 Kotlin Spring 프로젝트를 기반으로 하고있습니다.
+>
+> gradle 문법이 Kotlin DSL 형태로 작성되어있습니다.
+>
+> groovy 문법을 확인하고 싶다면 [codegen-spring-demo 프로젝트](https://github.com/Choi-JJunho/codegen-spring-demo)를 참고해주세요
 
-> <img src="docs/images/generateResult.png" width="400px" alt="openApiGenerate Result">
-> 
-> `build/generated` 경로에 결과물이 생성된다.
-
-# 실행방법 - 실행
+## 실행방법
 
 ```bash
-$ gradle updateOpenApiSpec
+$ git clone https://github.com/Choi-JJunho/codegen-kotlin-demo.git
 
-$ gradle build
+$ cd codegen-kotlin-demo
 
-$ java -jar build/libs/demo.jar
+$ ./gradlew build
 ```
 
-> <img src="docs/images/execute-updateOpenApiSpec.png" width="400px" alt="execute updateOpenApiSpec in intelliJ">
-> 
-> intelliJ 기준 설명
->  
-> gradle task중 `openapi tools` - `openApiGenerate`를 실행한다.
+## 사용 방법
 
-# 실행 화면
+<img width="500" alt="image" src="https://github.com/Choi-JJunho/codegen-spring-demo/assets/49794401/6f63067a-7db8-4afd-b64b-1026bee840bd">
 
-http://localhost:8080/swagger-ui/index.html 접속
+[OpenAPI Specification 명세](https://spec.openapis.org/oas/v3.1.0)에 맞춰 yaml 문서를 작성하여 프로젝트의 contract 경로에 추가합니다.
 
-<img src="docs/images/result.png" width="1200px" alt="execute result swagger page">
+<img width="500" alt="image" src="https://github.com/Choi-JJunho/codegen-spring-demo/assets/49794401/929217bc-5f89-436d-ba39-80c4e4a8b0c9">
 
-# 참고
+`gradle build` 를 수행하면 `build/generated` 경로에 명세를 기반으로 한 코드들이 생성됩니다.
 
-- [OpenAPI Generator Repository](https://github.com/OpenAPITools/openapi-generator)
+## 커스텀 하기
+
+gradle plugin을 보다 상세하게 활용하고 싶다면 다음 문서를 참고하여 gradle script를 수정할 수 있습니다.
+
+- [OpenAPI Generator Gradle Plugin](https://github.com/OpenAPITools/openapi-generator/blob/master/modules/openapi-generator-gradle-plugin/README.adoc)
+- [kotlin spring generator docs](https://openapi-generator.tech/docs/generators/kotlin-spring)
